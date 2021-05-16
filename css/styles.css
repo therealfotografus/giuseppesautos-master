@@ -1,0 +1,80 @@
+body{
+    overflow-x: hidden;
+}
+
+.dummy {
+    height: 213px;
+    visibility: hidden;
+}
+.zoom{
+    transition: transform .2s;
+    position: relative;
+    z-index: 7;
+}
+.zoom:hover {
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1); 
+    z-index: 8;
+}
+.hover{
+    opacity: 0;
+    transition: opacity 0.4s;
+    background-color: rgba(255,255,255, 0.45);
+}
+.hover:hover{
+    opacity: 1;
+}
+.text-responsive {
+    font-size: calc(100% + 1vw + 1vh)!important;
+}
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.mail{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.member-data{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center!important;
+    justify-content: center!important;
+}
+
+.catalog-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.member-container{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
