@@ -41,6 +41,9 @@ function get_img_path(name){
         case "Issi":
             return "/imgs/cars/issi2.png";
             break;
+		case "Mesa Merryweather":
+            return "/imgs/cars/mwmesa.png";
+            break;
         case "Dilettante":
             return "/imgs/cars/dilettante.png";
             break;
