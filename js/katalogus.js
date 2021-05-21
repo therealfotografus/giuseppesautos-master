@@ -303,7 +303,7 @@ function get_img_path(name){
             return "/imgs/cars/gauntlet.png";
             break;
         case "Hustler":
-            return "/imgs/cars/Hustler.png";
+            return "/imgs/cars/hustler.png";
             break;
         case "Buccaneer Custom":
             return "/imgs/cars/buccaneer2.png";
