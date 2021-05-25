@@ -49,6 +49,19 @@
 			style="z-index: 9; position: fixed; top: 0; width: 100%; transition: 0.4;">
 
 			<a class="nav-brand active" href="./"><img id="m_logo" src="imgs/logo.png"></a>
+<!-----Nyitva vagy zárva---->
+			<div class="w-100 pb-5">
+				<div class="member-container">
+					<% rows.forEach((element, index) => {
+						if ((element[14] == "Nyitva")){ %>
+							<img class="asd" width="100px" height="100px" src="https://i.imgur.com/7F6MPnJ.png">
+						<% }
+						else if ((element[14] == "Zárva")){ %>
+							<img class="asd" width="100px" height="100px" src="https://i.imgur.com/ICRxLjO.png">
+						<% }
+					}) %>
+				</div>
+			</div>
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
@@ -122,8 +135,7 @@
 										</p>
 									</div>
 									<div class="col">
-										<img class="card-img" style="cursor: pointer;" onclick="popup_modal('<%= element[0] %>')" data-car="<%= element[0] %>" src="" alt="">
-									<p style="text-align:center">A kép csak illusztráció!</p>
+										<a href="<%= element[13]%>" data-popup><img class="card-img" src="<%= element[13] || "https://static1.e621.net/data/47/4c/474ced57816f56cfe7a7a7d4d6381c6e.png" %>" alt=""></a>
 									</div>
 								</div>
 								<hr>
