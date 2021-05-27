@@ -50,10 +50,16 @@ app.set("view engine", "ejs");
 app.use("/imgs", express.static("imgs"));
 app.use("/js", express.static("js"));
 app.use("/css", express.static("css"));
+
 // GET request handlers
 app.get("/", function (req, res) {
     res.render("index");
 });
+
+app.get("/partnereink", function (req, res) {
+    res.render("partnereink");
+});
+
 app.get("/rolunk", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var auth, client, sheets, sheetId, rows;
     return __generator(this, function (_a) {
@@ -124,6 +130,52 @@ app.get("/katalogus", function (req, res) { return __awaiter(_this, void 0, void
         }
     });
 }); });
+
+app.get("/partnereink", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var auth, client, sheets, sheetId, rows, availableCars, _i, _a, element;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                auth = new google.auth.GoogleAuth({
+                    keyFile: "secrets.json",
+                    scopes: "https://www.googleapis.com/auth/spreadsheets"
+                });
+                return [4 /*yield*/, auth.getClient()];
+            case 1:
+                client = _b.sent();
+                sheets = google.sheets({ version: "v4", auth: client });
+                sheetId = sheetString;
+                return [4 /*yield*/, sheets.spreadsheets.values.get({
+                        auth: auth,
+                        spreadsheetId: sheetId,
+                        range: "Giuseppe's Autos Listings"
+                    })];
+            case 2:
+                rows = _b.sent();
+                availableCars = [];
+                for (_i = 0, _a = rows.data.values; _i < _a.length; _i++) {
+                    element = _a[_i];
+                    availableCars[availableCars.length] = element[0];
+                }
+                availableCars.shift();
+                arraySort(availableCars);
+                unique(availableCars);
+                /*
+                rows.data.values.forEach(element => {
+                    rows2.data.value.array.forEach(element2 => {
+                        if(element[0] == element2[0]){
+                            availableCars[availableCars.length] = element[0]
+                        }
+                    });
+                });
+                */
+                // Needed rows: A(1), B(2), J(10), K(11)
+                res.render("partnereink", { rows: rows.data.values, availableCars: availableCars });
+                return [2 /*return*/];
+        }
+    });
+}); });
+
 // POST request handlers
 app.post("/katalogus", urlencodedParser, function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var auth, client, sheets, sheetId, rows, availableCars, _i, _a, element;
@@ -171,4 +223,5 @@ app.post("/katalogus", urlencodedParser, function (req, res) { return __awaiter(
         }
     });
 }); });
+
 app.listen(port, function (req, res) { return console.log("Running on '" + port + "'"); });
